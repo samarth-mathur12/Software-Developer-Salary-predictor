@@ -22,11 +22,11 @@ def clean_experience(x):
     return float(x)
 
 def clean_education(x):
-    if "Bachelor’s degree" in x:
-        return "Bachelor’s degree"
+    if "Bachelor's degree" in x:
+        return "Bachelor's degree"
     
-    if "Master’s degree" in x:
-        return "Master’s degree"
+    if "Master's degree" in x:
+        return "Master's degree"
     
     if "Professional degree" in x:
         return "Professional degree"
@@ -35,7 +35,7 @@ def clean_education(x):
 
 
 def load_data():
-    df = pandas.read_csv('D:\ML-Projects\Salary Prediction of Software developers\dataset\survey_results_public.csv')
+    df = pandas.read_csv('D:\ML-Projects\Streamlit\Salary Prediction of Software developers\dataset\survey_results_public.csv')
     df = df[["Country", "EdLevel", "YearsCodePro", "Employment", "ConvertedComp"]]
     df = df[df["ConvertedComp"].notnull()]
     df = df.dropna()

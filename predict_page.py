@@ -1,6 +1,6 @@
 import streamlit
 import pickle
-import numpy
+import numpy as np
 
 
 def load_model():
@@ -21,42 +21,44 @@ def show_predict_page():
     streamlit.write(""" ### We need some information to predict the salary""")
     
     countries = (
-            "United States",
-            "India",
-            "United Kingdom",
-            "Germany",
-            "Canada",
-            "Brazil",
-            "France",
-            "Spain",
-            "Australia",
-            "Netherlands",
-            "Poland",
-            "Italy",
-            "Russian Federation",
-            "Sweden",
-        )
+        "United States",
+        "India",
+        "United Kingdom",
+        "Germany",
+        "Canada",
+        "Brazil",
+        "France",
+        "Spain",
+        "Australia",
+        "Netherlands",
+        "Poland",
+        "Italy",
+        "Russian Federation",
+        "Sweden",
+    )
 
     education = (
-            "Less than a Bachelors",
-            "Bachelor’s degree",
-            "Master’s degree",
-            "Post grad",
-        )
+        "Less than a Bachelors",
+        "Bachelor’s degree",
+        "Master’s degree",
+        "Post grad",
+    )
     
     
     country = streamlit.selectbox("Country: ", countries)
     education = streamlit.selectbox("Education: ", education)
     
-    expericence = streamlit.slider("Year od Experince", 0, 50, 3)
+    experience = streamlit.slider("Years of Experience", 0, 50, 3)
     
-    ok = streamlit.button("Calaucate Salary")
+    ok = streamlit.button("Calculate Salary")
     
     if ok:
-        X = numpy.array([[country, education, expericence]])
-        X[:, 0] = le_country.transform(X[:,0])
-        X[:, 1] = le_education.transform(X[:,1])
+        X = np.array([[country, education, experience]])
+        X[:, 0] = le_country.transform(X[:, 0])
+        X[:, 1] = le_education.transform(X[:, 1])
         X = X.astype(float)
         
         salary = regressor.predict(X)
-        streamlit.subheader(f"The estimated salary is ${salary[0]:.2f}") 
+        streamlit.subheader(f"The estimated salary is ${salary[0]:.2f}")
+
+show_predict_page()
